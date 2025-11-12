@@ -1,8 +1,0 @@
-"","id","label","notes","type"
-"1","_id","_id",NA,"int"
-"2","fecha","fecha",NA,"timestamp"
-"3","anio","anio",NA,"numeric"
-"4","mes","mes",NA,"text"
-"5","linea","linea",NA,"text"
-"6","estacion","estacion",NA,"text"
-"7","afluencia","afluencia",NA,"numeric"
