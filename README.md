@@ -97,6 +97,14 @@ Las variables predictoras que se utilizaron fueron:
 La variable objetivo fue ```afluencia```.
 
 #### Resultados
+**Métricas globales** para predicciones de afluencia para 2025
+- **MAE**: 34612.39
+- **RMSE**: 2901454080.00
+- **R²** : 0.885
+
+![R2 por línea](visualizations/I_R2_porLinea.png)
+
+Como se puede observar en la imagen anterior, el modelo tiene un gran falla al tratar de predecir la afluencia para la Línea 1. Por lo que, es necesario tomar en cuenta más variables. 
 
 ### Modelo Final: Modelo Final XGB
 
@@ -123,6 +131,29 @@ Las variables predictoras fueron:
 - ```random_state```=42
 
 Las **predicciones** se hicieron en escala ```log1p```. 
+
+#### Feature Importance
+![Feature Importance](visualizations/II_FI.png)
+El modelo muestra que su capacidad predictiva depende **fuertemente** de variables que capturan **tendencias recientes**, **patrones temporales** y **dinámicas específicas por línea**.  A continuación se interpretan los resultados. 
+
+**1. Rolling Windows** (factores predominantes) 
+- ```rolling7``` (0.56) Es la variable más importante del modelo. Esta captura el promedio de afluencia de la última semana y refleja la tendencia inmediata.
+- ```rolling14``` (0.13) Aporta información de tendencias quincenales, complementando la tendencia semanal.
+- **2. Lag Features**
+- ```lag1```(0.07) Influye de manera significativa, la afluencia del día anterior tiene un efecto directo.
+- ```lag7``` (0.049) Refleja la estacionalidad semanal.
+- ```lag14``` y ```lag28``` Capturan ciclos semanales extendidos, tienen menor contribución pero siguen siendo útiles.
+
+**3. Efecto por Línea**: 
+Algunas líneas tienen patrones particulares que el modelo aprende:
+- ```linea_Línea 4``` (0.0976)
+- ```linea_Línea 12``` (0.0288)
+
+**4. Variables de calendario**: 
+- ```es_feriado``` (0.0044) Hay cambios significativos de afluencia en días festivos.
+
+Debido a las variables anteriores, el modelo es impulsado pro variables que capturan **tendencias recientes de afluencia**, como ```rolling7``` y ```rolling14```, que explican más del 70% de la importancia total. Los rezagos (```lag1```,```lag7```,```lag14```,```lag28```) confirman que se presenta un **estacionalidad semanal**. 
+
 
 #### Resultados 
 **Métricas globales** para predicciones de afluencia para 2025
