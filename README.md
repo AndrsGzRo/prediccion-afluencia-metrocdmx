@@ -169,24 +169,70 @@ Debido a las variables anteriores, el modelo es impulsado pro variables que capt
 
 ![Real vs Predicho ](visualizations/II_RealvsPredicho.png "Real vs Predicciones")
 
-## 8. Conclusiones
+## 8. Predicciones de afluencia para los meses restantes de 2025
+
+Una vez generado el modelo, se generaron predicciones para los meses restantes del año 2025: octubre, noviembre y diciembre.
+Para ello, se construyó un conjunto de datos futuro que incluye:
+- Fechas faltantes del año.
+- Todas las líneas del conjunto original.}
+- Las mismas variables predictores utilizadas durante el entrenamiento:
+    - Variables temporales.
+    - Variables cíclicas.
+    - Lag features.
+    - Rolling Windows.
+    - Dummies de línea.
+A partir de estas características, el modelo produjo una predicción diaria de **afluencia para cada línea**.
+
+### Predicción de Afluencia por Línea 
+
+La afluencia predicha en los meses restantes es la siguiente: 
+
+![Afluencia en los meses restantes del año](visualizations/PRED_Afluencia_Linea.png)
+
+### Predicción: Afluencia Total
+Para facilitar el análisis y comunicación de resultados, se realizó un agrupamiento mensual por línea. 
+
+```df_futuro.groupby(['linea', 'mes_nombre'])['prediccion'].sum()```
+
+Se interpreta de la siguiente manera:
+- Indica el **total de pasajeros esperados en el mes completo**, considerando todos los días.
+  
+![Afluencia total linea](visualizations/PRED_Afluencia_Meses.png) 
+
+Por ejemplo:
+Si la Línea 2 acumula **18,025,208 pasajeros en octubre**, esto significa que *a lo largo de noviembre 2025, se espera que la línea 2 transporte cerca de 18 millones de pasajeros*. 
+
+### Predicción: Afluencia Promedio 
+
+```df_futuro.groupby(['linea', 'mes_nombre'])['prediccion'].mean()```
+
+Esta operación obtiene el **promedio de la afluencia diaria estimada** para cada línea durante cada mes. 
+
+Interpretación: 
+- Indica cuántas personas se espera que utilicen una línea en **un día típico del mes**.
+  
+![Afluencia promedio linea](visualizations/PRED_PromAfluencia_Meses.png) 
+
+Por ejemplo:
+Si la Línea 2 **promedia 600,840 pasajeros** en el mes de noviembre, significa: *En un día promedio de noviembre, la Línea 2 movería alrededor de 600 pasajeros*. 
+## 9. Conclusiones
 - El modelo logra una **alta precisión** en la mayoría de las líneas.
 - Los **lag features y variables cíclicas** fueron claves para alcanzar un desempeño alto.
 - Algúnas líneas presentan más variabilidad, como la Línea 1 y 2, las cuales son las que cuentan con más afluencia.
 - Los feriados y fines de semana aportan información valiosa
 
-## 9. Limitaciones
+## 10. Limitaciones
 - En el modelo no se toman en cuenta los datos por estación, solo por línea.
 - No se consideran fallas operativas, cierres o eventos extraordinarios. Solamente en el caso de la Línea 12 se toma en cuenta el tiempo de construcción y el cierro que se tuvo por accidente y trabajos de correcciones.
 - Los datos dependen totalmente de reportes oficiales.
 
-## 10. Trabajo Futuro
+## 11. Trabajo Futuro
 - Predicción por estación.
 - Series de tiempo con LSTM/Transformers.
 - Dashboard Interactivo.
 - Detección de anomalís en días atípicos.
 
-## 11. Tecnologías Utilizadas
+## 12. Tecnologías Utilizadas
 - **Python**:
   - ```pandas```
   - ```matplotlib```
