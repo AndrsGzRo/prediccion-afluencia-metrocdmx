@@ -21,18 +21,30 @@ Los datos están estructurados de la siguiente manera:
 |```dia_semana```| Día de la semana|
 ## 3. Visualizaciones
 ### 3.1 Evolución Diaria de la Afluencia Del Metro de la Ciudad de México en 2025
-![](Visualizacion/Evolucion_Afluencia_2025.png) 
+![Evolución Afluencia en 2025](Visualizaciones/Evolucion_Afluencia_2025.png) 
+
 ### 3.2 Afluencia Total por Línea en 2025
+![Afluencia Total por Línea](Visualizaciones/Afluencia_Linea.png)
 ### 3.3 Promedio de Afluencia en 2025 (Línea x Día de la Semana)
+![Heatmap](Visualizaciones/Promedio_Linea_Dia.png)
 ### 3.4 Distribución de la Afluencia por Día de la Semana
+![Boxplot](Visualizaciones/Distribucion_Dia_Semana.png)
 ### 3.5 Afluencia por Línea en 2025
+![Lineplor por Línea](Visualizaciones/Afluencia_por_Linea.png)
 ### 3.6 Variabilidad entre Semana por Línea en 2025
+![Variabilidad entre semana](Visualizaciones/Variabilidad_Linea.png) 
 ### 3.7 Variabilidad por Línea en 2025 (Mensual)
+![Variabilidad Mensual](Visualizaciones/Variabilidad_Mes_Linea.png)
 ### 3.8 Perfil Semanal en 2025
+![Perfil Semanal](Visualizaciones/Perfil_Semanal.png) 
 ### 3.9 Correlación entre Líneas
+![Correlacion](Visualizaciones/Correlacion_Lineas.png) 
 ### 3.10 Estaciones con Mayor Afluencia
+![Estaciones](Visualizaciones/Estaciones.png) 
 ### 3.11 Distribución total anual por estación
+![Distribucion](Visualizaciones/Distribucion_Estaciones.png) 
 ### 3.12 Ranking Mensual de Estaciones 
+![Ranking](Visualizaciones/Ranking.png) 
 
 ## 4. Hallazgos Generales
 ## 5. Conclusiones
