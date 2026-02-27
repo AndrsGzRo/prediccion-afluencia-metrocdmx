@@ -47,7 +47,25 @@ Los datos están estructurados de la siguiente manera:
 ![Ranking](Visualizaciones/Ranking.png) 
 
 ## 4. Hallazgos Generales
+- Las líneas más utilizadas durante el año de 2025 fueron:
+  1. Línea 2
+  2. Línea 3
+  3. Línea B
+  4. Línea 1
+  5. Línea 12
+- La afluencia presenta un comportamiento similar de lunes a viernes, cayendo en sábado y teniendo muy poca afluencia en domingo.
+- La Línea 2, 3 9 y A tienen en promedio más de 25,000 pasajeros entre semana y en los fines de semana cae la afluencia.
+- La línea 7 tiene entre semana una variabilidad cercana al 30% respecto a su promedio de afluencia, seguida por la línea 6, 12, 3 y 9. La línea con menor variabilidad entre semana fue la línea 1.
+- A lo largo de los meses de 2025, la Línea 1 presento una variabilidad mayor del 25% respecto a su promedio. Las líneas restantes presentaron una variabilidad menor del 10%. La línea que fue más constante respecto a su promedio fue la línea 2.
+- Las estaciones con mayor afluencia son:
+  1. Pantitlán
+  2. Cuatro Caminos
+  3. Constitución de 1917
+  4. Indios Verdes
+  5. Tacubaya
 ## 5. Conclusiones
+- El comportamiento de la afluencia del metro de la Ciudad de México se puede representar de manera gráfica y de diversas maneras.
+- El comportamiento de la línea 1 es irregular, en comparación a la tendencia histórica, debido a la remodelación de la línea. 
 ## 6. Tecnologías utilizadas
 - Python
 - Pandas
