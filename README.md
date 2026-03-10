@@ -135,7 +135,69 @@ La variable objetivo sigue siendo ```afluencia```
 |Test|13382.40|22644.21|0.981|
 
 ### Visualizaciones
+#### Feature Importance
+![Feature Importance](Visualizaciones/10_feature_importance.png) 
 
+Interpretación: 
+- **lag7(0.41):** La afluencia de hace 7 días, mismo día de la semana anterior, es el mejor predictor para la afluencia actual. Por lo tanto, el patrón semanal es el más fuerte en este caso.
+- **rolling7 (0.22):** El promedio de los últimos 7 días aporta contexto sobre la demanda. Junto con lag7 explica el 63% de la importancia total del modelo.
+- **rolling 14 (0.11):** El promedio de las últimas dos semanas captura tendencias de más largo plazo, útil para detectar si la demanda está subiendo o bajando.
+- **lag14 (0.08):** La alfuencia de hace dos semanas refuerza el patrón quincenal, relevante en pagos de quincena.
+- **lag 28 (0.06)**: La afluencia de hace 28 días aproxima el mismo día del mes anterior, capturando patrones mensuales de movilidad.
+
+#### Error Porcentual por Línea
+![Error Porcentual](Visualizaciones/11_error_linea.png)
+
+#### $R^{2}$ por Línea
+![R2 por Línea](Visualizaciones/12_r2_linea.png) 
+
+#### Afluencia Real vs Predicha Serie de Tiempo (2025)
+![Real vs Predicha](Visualizaciones/13_afluencia_real_pred.png)
+
+#### Afluencia Real vs Afluencia Predicha
+![Real](Visualizaciones/14_real_pred.png)
+
+#### Afluencia Predicha en 2026 
+![Afluencia 2026](Visualizaciones/15_afluencia_pred.png) 
+
+#### Afluencia Total por Línea en 2026
+![Afluencia Línea 2026](Visualizaciones/16_afluencia_linea.png) 
+
+
+#### Afluencia Mensual por Línea en 2026
+![Afluencia Mensual 2026](Visualizaciones/17_mes_linea_pred.png) 
+
+## Modelo Prophet + XGBoost
+Para mejorar las predicciones de afluencia para 2026 se utilizó Prophet de Meta. Esta está diseñada para predecir series de tiempo. A diferencia de XGBoost, Prophet permite obtener predicciones e **intervalos de confianza** del 95% para cada una de las 12 líneas durante 2026. Este es una de las principales ventajas de Prophet, ya que en lugar de dar una predicción puntual, se obtiene un rango probable de demanda para cada mes.  
+Así mismo, se utilizaron las predicciones de XGBoost como variable adicional dentro de Prophet. 
+
+### Visualizaciones
+#### Predicción de Afluencia para 2026
+![Predicción 2026](Visualizaciones/18_afluencia_2026.png)
+
+#### Afluencia Real 2025 vs Predicción 2026 
+![Real vs Pred](Visualizaciones/19_real_pred.png)
+
+#### Predicción Afluencia Mensual
+![Afluencia Mensual 2026](Visualizaciones/20_afluencia_mes.png)
+
+#### Afluencia Real 2025 vs Predicción 2026 por línea 
+![Real vs Pred por línea](Visualizaciones/20_real_pred_2026_linea.png) 
+
+#### Predicción Mensual en 2026 por Línea
+![Pred Mensual por Línea](Visualizaciones/22_prediccion_mensual_2026_lineas.png) 
+
+## Comparación de Resultados
+Se evaluaron los tres modelos obre el mismo periodo de prueba, midiendo el error absoluto medio (MAE), la raíz cuadrado del error cuadrático medio (RMSE) y el coeficiente de determinación ($R^{2}$). 
+|Modelo           |MAE|RMSE| R²|
+|-----------------|---|----|---|
+|XGBoost + features| 121,562 |192,510|0.941|
+|Prophet + XGBoost| 119,069 |190,716| 0.942 |}
+
+## Conclusión
+Gracias al modelado predictivo con XGBoost se descubrió que la afluencia depende mayoritariamente de sus propios valores pasados. La incorporación de lags y promedios móviles transformó un modelo de R² de 0.715 a uno de 0.982, siendo el lag de 7 días, la afluencia del mismo día de la semana anterior, la variable más importante para la predicción de afluencia. Esta cuenta con el 41% de la importancia total del modelo. 
+
+Para los predicciones de 2026 se optó por el modelo Prophet + XGBoost, entrenado de forma independiente para cada una de las 12 líneas. Este modelo ofrece una ventaja fundamental para la planeación operativa: los intervalos de confianza al 95%. En lugar de predecir un único valor de demanda, el modelo entrega un rango probable de afluencia para cada mes y línea, reconociendo la incertidumbre a cualquier predicción de largo plazo. 
 ## Créditos:
 - **Autor**: [Andrés Guzmán Rodríguez](https://github.com/AndrsGzRo)
 - **Fuente**: [Afluencia Diaria del Metro (Desglosada) - Portal de Datos Abiertos del Gobierno de la Ciudad de México](https://datos.cdmx.gob.mx/dataset/afluencia-diaria-del-metro-cdmx/resource/cce544e1-dc6b-42b4-bc27-0d8e6eb3ed72)
